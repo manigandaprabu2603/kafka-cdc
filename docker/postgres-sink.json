@@ -1,0 +1,19 @@
+﻿{
+  "name": "postgres-sink-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.jdbc.JdbcSinkConnector",
+    "tasks.max": "1",
+    "topics.regex": "pgserver\\.kafka\\..*",
+    "connection.url": "jdbc:postgresql://postgres-sink:5432/sinkdb",
+    "connection.username": "postgres",
+    "connection.password": "postgres",
+    "insert.mode": "upsert",
+    "primary.key.mode": "record_key",
+    "delete.enabled": "true",
+    "table.name.format": "kafka.${source.table}",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "true",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "true"
+  }
+}
